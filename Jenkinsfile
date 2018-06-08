@@ -18,7 +18,7 @@ pipeline {
                             openshift.withCluster('mycluster') {
                                 openshift.withCredentials( 'openshift-token' ) {
                                     openshift.withProject('myproject') {
-                                        return !openshift.selector('bc', 'openshift-jee-sample').exists();
+                                        return !openshift.selector('deploymentconfig', 'openshift-jee-sample').exists();
                                     }
                                 }          
                             }  
