@@ -28,11 +28,11 @@ pipeline {
              steps {
                     script {
                         openshift.withCluster('mycluster') {
-                              openshift.withCredentials( 'openshift-token' ) {
+                           
                                     openshift.withProject('myproject') {
                                         openshift.newBuild('--name=openshift-jee-sample', '--image-stream=openshift/wildfly:latest', '--binary')
                                     }
-                             }
+                             
                         }
                     }
                 }
