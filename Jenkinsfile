@@ -1,9 +1,11 @@
 pipeline {
-    agent any 
+    agent {
+      label 'maven'
+  	}
     stages {
         stage('Build') { 
             steps {
-                echo "Building stage"
+                 sh "mvn install"
             }
         }
         stage('Test') { 
