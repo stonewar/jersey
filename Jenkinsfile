@@ -16,7 +16,7 @@ pipeline {
              steps {
               script {
 
-              openshift.withCluster( 'mycluster') {
+              openshift.withCluster( 'https://192.168.99.101:8443') {
                                     
                                       openshift.withCredentials( 'lG1xc2V-OrGhtN65FYwvTLx_h1QvvfOj8H6SQMRA24E' ) {
     /** Selectors are a core concept in the DSL. They allow the user to invoke operations **/
