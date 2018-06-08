@@ -12,6 +12,14 @@ pipeline {
               sh 'mvn install'
             }
         }
+        stage('Create Image Builder') {
+              when {
+                expression {
+                  openshift.withCluster() {
+                    return !openshift.selector("bc", "jersey").exists();
+                  }
+             }
+         }
         stage('Connection to openshift') { 
             steps {
                 script {
