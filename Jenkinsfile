@@ -19,7 +19,7 @@ pipeline {
               openshift.withCluster( 'mycluster' ) {
     /** Selectors are a core concept in the DSL. They allow the user to invoke operations **/
     /** on group of objects which satisfy a given criteria. **/
-
+   openshift.withProject('myproject') {
     // Create a Selector capable of selecting all service accounts in mycluster's default project
     def saSelector = openshift.selector( 'serviceaccount' )
 
@@ -47,7 +47,7 @@ pipeline {
     openshift.selector( [ 'dc/jenkins', 'build/ruby1' ] ).describe()
 }
               }
-        }
+              }}
              }
         stage('Deploy') { 
             steps {
