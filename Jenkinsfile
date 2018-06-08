@@ -15,7 +15,7 @@ pipeline {
         stage('Create Image Builder') {
               when {
                 expression {
-                  openshift.withCluster() {
+                  openshift.withCluster('mycluster') {
                     return !openshift.selector("bc", "jersey").exists();
                   }
                 }
@@ -24,7 +24,7 @@ pipeline {
                 script {
                     openshift.withCluster('mycluster') {
                         openshift.withProject('myproject') {
-                            openshift.newBuild("--name=jersey", "--image-stream=redhat-openjdk18-openshift", "--binary")
+                            openshift.newBuild("--name=jersey", "--image-stream=openshift/wildfly:latest", "--binary")
                         }
                     }
                 }
