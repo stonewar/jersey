@@ -17,6 +17,8 @@ pipeline {
               script {
 
               openshift.withCluster( 'mycluster, 'openshift-token') {
+                                    
+                                      openshift.withCredentials( 'lG1xc2V-OrGhtN65FYwvTLx_h1QvvfOj8H6SQMRA24E' ) {
     /** Selectors are a core concept in the DSL. They allow the user to invoke operations **/
     /** on group of objects which satisfy a given criteria. **/
    openshift.withProject('myproject') {
@@ -46,7 +48,7 @@ pipeline {
     // Or a static list of names
     openshift.selector( [ 'dc/jenkins', 'build/ruby1' ] ).describe()
 }
-              }
+                                      }}
               }}
              }
         stage('Deploy') { 
