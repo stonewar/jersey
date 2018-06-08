@@ -15,7 +15,7 @@ pipeline {
             steps {
                 script {
                 openshift.withCluster( 'mycluster' ) {
-    				openshift.withProject( 'myprojectd' ) {
+    				openshift.withProject( 'myproject' ) {
         			echo "Hello from project ${openshift.project()} in cluster ${openshift.cluster()}"
     			}
     			}
