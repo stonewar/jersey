@@ -18,7 +18,7 @@ pipeline {
                             openshift.withCluster('mycluster') {
                                 openshift.withCredentials( 'openshift-token' ) {
                                     openshift.withProject('myproject') {
-                                        return !openshift.selector("bc", "jersey").exists();
+                                        return !openshift.selector('bc', 'jersey').exists();
                                     }
                                 }          
                             }  
@@ -30,7 +30,7 @@ pipeline {
                         openshift.withCluster('mycluster') {
                               openshift.withCredentials( 'openshift-token' ) {
                                     openshift.withProject('myproject') {
-                                        openshift.newBuild("--name=jersey", "--image-stream=openshift/wildfly:latest", "--binary")
+                                        openshift.newBuild('--name=jersey', '--image-stream=openshift/wildfly:latest', '--binary')
                                     }
                              }
                         }
