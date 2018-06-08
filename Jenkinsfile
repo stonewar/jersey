@@ -28,7 +28,8 @@ pipeline {
                         }
                     }
                 }
-            }          
+            } 
+        }
         stage('Connection to openshift') { 
             steps {
                 script {
