@@ -1,11 +1,9 @@
 pipeline {
-    agent {
-      label 'maven'
-  	}
+    agent any 
     stages {
         stage('Build') { 
             steps {
-                 sh "mvn install"
+              sh "mvn install"
             }
         }
         stage('Test') { 
