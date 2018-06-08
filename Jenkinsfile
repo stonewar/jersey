@@ -13,7 +13,7 @@ pipeline {
             }
         }
         stage('Create Image Builder') {
-            
+             steps {
               script {
 
               openshift.withCluster( 'mycluster' ) {
@@ -48,6 +48,7 @@ pipeline {
 }
               }
         }
+             }
         stage('Deploy') { 
             steps {
                  echo "Deploy stage"
