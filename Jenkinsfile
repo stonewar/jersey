@@ -18,9 +18,17 @@ pipeline {
                   openshift.withCluster() {
                     return !openshift.selector("bc", "jersey").exists();
                   }
-             }
-              }
-         }
+                }
+              }      
+             steps {
+                script {
+                    openshift.withCluster('mycluster') {
+                        openshift.withProject('myproject') {
+                            openshift.newBuild("--name=jersey", "--image-stream=redhat-openjdk18-openshift", "--binary")
+                        }
+                    }
+                }
+            }          
         stage('Connection to openshift') { 
             steps {
                 script {
@@ -31,19 +39,7 @@ pipeline {
     			}
             }
           }
-        }
-        stage('build') {
-            steps {
-                script {
-                    openshift.withCluster('mycluster') {
-                    openshift.withProject('myproject') {
-                    openshift.newBuild("--name=jersey", "--image-stream=redhat-openjdk18-openshift", "--binary")
-                   
-                }
-            }
-            }
-            }
-        }
+        }   
         stage('Deploy') { 
             steps {
                  echo "Deploy stage"
