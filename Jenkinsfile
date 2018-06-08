@@ -14,7 +14,7 @@ pipeline {
         stage('Test') { 
             steps {
                 script {
-                openshift.withCluster( 'https://192.168.99.101:8443', 'lG1xc2V-OrGhtN65FYwvTLx_h1QvvfOj8H6SQMRA24E' ) {
+                openshift.withCluster( 'mycluster' ) {
     				openshift.withProject( 'myprojectd' ) {
         			echo "Hello from project ${openshift.project()} in cluster ${openshift.cluster()}"
     			}
