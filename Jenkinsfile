@@ -13,7 +13,6 @@ pipeline {
             }
         }
         stage('Create Image Builder') {
-             script {
                     when {
                         expression {
                             openshift.withCluster('mycluster') {
@@ -25,7 +24,7 @@ pipeline {
                             }  
                         }
                     }
-                }
+          
              steps {
                     script {
                         openshift.withCluster('mycluster') {
