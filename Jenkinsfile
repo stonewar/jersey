@@ -1,4 +1,4 @@
-def templateName = 'redhat-openjdk18-openshift' 
+def s2i_builder_name = 'redhat-openjdk18-openshift' 
 pipeline {
     agent {
         docker {
@@ -28,12 +28,8 @@ pipeline {
                 script {
                     openshift.withCluster('mycluster') {
                     openshift.withProject('myproject') {
-                      def builds = openshift.selector("bc", templateName).related('builds')
-                      timeout(5) { 
-                        builds.untilEach(1) {
-                          return (it.object().status.phase == "Complete")
-                        }
-                    }
+                    openshift.newBuild("--name=jersey", "--image-stream=redhat-openjdk18-openshift", "--binary")
+                   
                 }
             }
             }
