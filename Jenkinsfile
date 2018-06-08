@@ -19,6 +19,7 @@ pipeline {
                     return !openshift.selector("bc", "jersey").exists();
                   }
              }
+              }
          }
         stage('Connection to openshift') { 
             steps {
