@@ -16,7 +16,7 @@ pipeline {
              steps {
               script {
 
-              openshift.withCluster( 'mycluster' ) {
+              openshift.withCluster( 'mycluster', 'developer-credentails') {
     /** Selectors are a core concept in the DSL. They allow the user to invoke operations **/
     /** on group of objects which satisfy a given criteria. **/
    openshift.withProject('myproject') {
