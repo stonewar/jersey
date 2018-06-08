@@ -16,11 +16,11 @@ pipeline {
                     when {
                         expression {
                             openshift.withCluster('mycluster') {
-                                openshift.withCredentials( 'openshift-token' ) {
+                         
                                     openshift.withProject('myproject') {
                                         return !openshift.selector('deploymentconfig', 'openshift-jee-sample').exists();
                                     }
-                                }          
+                                          
                             }  
                         }
                     }
