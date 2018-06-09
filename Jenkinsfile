@@ -15,7 +15,7 @@ pipeline {
         stage('Create Image Builder') {          
              steps {
                     script {
-                        openshift.withCluster() {
+                        openshift.withCluster('https://192.168.99.101:8443') {
                            
                                     openshift.withProject('myproject') {
                                         openshift.newBuild('--name=openshift-jee-sample', '--image-stream=openshift/wildfly:latest', '--binary')
