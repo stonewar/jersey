@@ -12,22 +12,10 @@ pipeline {
               sh 'mvn install'
             }
         }
-        stage('Create Image Builder') {
-                    when {
-                        expression {
-                            openshift.withCluster('mycluster') {
-                         
-                                    openshift.withProject('myproject') {
-                                        return !openshift.selector('deploymentconfig', 'openshift-jee-sample').exists();
-                                    }
-                                          
-                            }  
-                        }
-                    }
-          
+        stage('Create Image Builder') {          
              steps {
                     script {
-                        openshift.withCluster('mycluster') {
+                        openshift.withCluster() {
                            
                                     openshift.withProject('myproject') {
                                         openshift.newBuild('--name=openshift-jee-sample', '--image-stream=openshift/wildfly:latest', '--binary')
